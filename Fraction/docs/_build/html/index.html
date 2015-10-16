@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Fraction’s documentation! &mdash; Fraction 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Fraction 1 documentation" href="#" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Fraction 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-fraction-s-documentation">
+<h1>Welcome to Fraction&#8217;s documentation!<a class="headerlink" href="#welcome-to-fraction-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Fraction is a simple training project for representing fraction in some notation. Fraction is represented by it&#8217;s decimal integer nominator and decimal integer denominator. Power of notation is also given as decimal integer value.</p>
+<p>Fraction API is represented by the class <a class="reference internal" href="#fraction.Fraction" title="fraction.Fraction"><code class="xref py py-class docutils literal"><span class="pre">fraction.Fraction</span></code></a>, which stores fraction and performs representation. It is computed by <cite>fraction.Fraction</cite> main method <a class="reference internal" href="#fraction.Fraction.represent" title="fraction.Fraction.represent"><code class="xref py py-meth docutils literal"><span class="pre">fraction.Fraction.represent()</span></code></a>, that prints representation to the console. Each character of fraction in given notation looks like <cite>#&lt;val&gt;</cite>, where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
+</div>
+<div class="section" id="module-fraction">
+<span id="fraction-api"></span><h1>Fraction API:<a class="headerlink" href="#module-fraction" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="fraction.Fraction">
+<em class="property">class </em><code class="descclassname">fraction.</code><code class="descname">Fraction</code><span class="sig-paren">(</span><em>nominator</em>, <em>denominator</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main class for performing actions on the fraction. 
+Stores fraction as nominator and denominator and computes representation in different notations</p>
+<dl class="method">
+<dt id="fraction.Fraction._comp_over">
+<code class="descname">_comp_over</code><span class="sig-paren">(</span><em>cur_rest</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction._comp_over" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if process of computing representation of fractional part is over or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cur_rest</strong> (<em>int</em>) &#8211; Current rest in computation process.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal"><span class="pre">True</span></code> if process is over and <code class="docutils literal"><span class="pre">False</span></code> otherwise.</td>
+</tr>
+</tbody>
+</table>
+<p>Method is used in <a class="reference internal" href="#fraction.Fraction._repr_frac" title="fraction.Fraction._repr_frac"><code class="xref py py-meth docutils literal"><span class="pre">_repr_frac()</span></code></a> to control computation process.</p>
+<p>Computing is over when current rest is 0 (in this case fractional part in given notation is finite) or is met earlier (in this case fractional part has period and it&#8217;s finished by rest computed during previous step).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fraction.Fraction._repr_frac">
+<code class="descname">_repr_frac</code><span class="sig-paren">(</span><em>notation</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction._repr_frac" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent fractional part of the fraction in the given notation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Pair of lists of digits representing fractional part of the fraction. The first one represents non-periodical fractional part. The last one represents period of fraction.</td>
+</tr>
+</tbody>
+</table>
+<p>Representing is performing by improved algorithm of consequent multiplications. The difference from the classical algorithm of converting finite decimal fraction to the other notation is that fraction can be infinite. As soon as fraction is represented by it&#8217;s nominator and denominator (nominator &lt; denominator), the classical algorithm can be improved. During every step of algorithm we need multiply nominator and power of notation and then divide it by denominator. Quotient is the computed digit of representation, rest is used in further computations. The whole history of rests should be stored. Process is finished when current rest is 0 (in this case fractional part in given notation is finite) or it is stored in history of rests (in this case fractional part is infinite with digits from rest found earlier to rest found in previous step as period).</p>
+<p>Checks of continuing process is made by <a class="reference internal" href="#fraction.Fraction._comp_over" title="fraction.Fraction._comp_over"><code class="xref py py-meth docutils literal"><span class="pre">_comp_over()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fraction.Fraction._repr_int">
+<code class="descname">_repr_int</code><span class="sig-paren">(</span><em>notation</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction._repr_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent integer part of the fraction in the given notation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of digits representing integer part of the fraction.</td>
+</tr>
+</tbody>
+</table>
+<p>Representing is performing by algorithm of consequent divisions and taking rests.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fraction.Fraction.represent">
+<code class="descname">represent</code><span class="sig-paren">(</span><em>notation</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction.represent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent fraction in given notation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing is returned.</td>
+</tr>
+</tbody>
+</table>
+<p>Method separately represent integer (<a class="reference internal" href="#fraction.Fraction._repr_int" title="fraction.Fraction._repr_int"><code class="xref py py-meth docutils literal"><span class="pre">_repr_int()</span></code></a>) and fractional (<a class="reference internal" href="#fraction.Fraction._repr_frac" title="fraction.Fraction._repr_frac"><code class="xref py py-meth docutils literal"><span class="pre">_repr_frac()</span></code></a>) part. After that method combines all representations into the result one and prints it. Each character of representation looks like <cite>#&lt;val&gt;</cite>, where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="fraction.input_int">
+<code class="descclassname">fraction.</code><code class="descname">input_int</code><span class="sig-paren">(</span><em>welcome</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.input_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input integer value from console.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>welcome</strong> (<em>str</em>) &#8211; String that is shown in console to specify input value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Integer value extracted from input string.</td>
+</tr>
+</tbody>
+</table>
+<p>In case of any error while extracting floats from input string error message is shown and <cite>input_int()</cite> welcomes to try input again.
+Input is retried until it is successful.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fraction.main">
+<code class="descclassname">fraction.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fraction.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main function that get nominator, denominator and power of notation from console and then print representation of the fraction.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Fraction&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#module-fraction">Fraction API:</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Fraction 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Dandelion.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
