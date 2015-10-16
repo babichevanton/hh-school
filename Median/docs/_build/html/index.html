@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Median’s documentation! &mdash; Median 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Median 1 documentation" href="#" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Median 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-median-s-documentation">
+<h1>Welcome to Median&#8217;s documentation!<a class="headerlink" href="#welcome-to-median-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Median is a simple training module for finding median of row of numbers. Row is combined from two sorted subrows
+that should be taken from console.</p>
+<p>Median&#8217;s API is represented by <a class="reference internal" href="#median_of_row.median" title="median_of_row.median"><code class="xref py py-func docutils literal"><span class="pre">median_of_row.median()</span></code></a> which takes two sorted rows of numbers and computes
+the median of row combined from both taken rows.</p>
+</div>
+<div class="section" id="module-median_of_row">
+<span id="median-api"></span><h1>Median API:<a class="headerlink" href="#module-median_of_row" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="median_of_row.main">
+<code class="descclassname">median_of_row.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#median_of_row.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function that inputs two rows of floats and finds median of joined row.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing is returned.</td>
+</tr>
+</tbody>
+</table>
+<p><cite>main()</cite> prints joined row and it&#8217;s median in console. For finding median <a class="reference internal" href="#median_of_row.median" title="median_of_row.median"><code class="xref py py-func docutils literal"><span class="pre">median()</span></code></a> is used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="median_of_row.median">
+<code class="descclassname">median_of_row.</code><code class="descname">median</code><span class="sig-paren">(</span><em>row1</em>, <em>row2</em><span class="sig-paren">)</span><a class="headerlink" href="#median_of_row.median" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find median for row with elements from both parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row1</strong> (<em>list</em>) &#8211; First row of values. Must be sorted in some way.</li>
+<li><strong>row2</strong> (<em>list</em>) &#8211; Second row of values. Must be sorted in some way.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Median of row of values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For joining both rows of values <a class="reference internal" href="#median_of_row.merge" title="median_of_row.merge"><code class="xref py py-func docutils literal"><span class="pre">merge()</span></code></a> is used</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="median_of_row.merge">
+<code class="descclassname">median_of_row.</code><code class="descname">merge</code><span class="sig-paren">(</span><em>list1</em>, <em>list2</em><span class="sig-paren">)</span><a class="headerlink" href="#median_of_row.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge procedure from merge sort algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>list1</strong> (<em>list</em>) &#8211; First list to merge. It should be sorted in some order.</li>
+<li><strong>list2</strong> (<em>list</em>) &#8211; Second list to merge. It should be sorted in the same order as first one.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Sorted list of elements both from 1st and 2nd parameters.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Merge procedure is needed for merging two sorted in the same order lists of elements in one sorted list.
+Sorting order of result list is similar to both parameters&#8217; ones.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="median_of_row.row_input">
+<code class="descclassname">median_of_row.</code><code class="descname">row_input</code><span class="sig-paren">(</span><em>num</em><span class="sig-paren">)</span><a class="headerlink" href="#median_of_row.row_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input row of floats from console.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num</strong> (<em>int</em>) &#8211; Number of row that needs to be input.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of floats extracted from input string.</td>
+</tr>
+</tbody>
+</table>
+<p>List values should be input in one string. <cite>row_input()</cite> allows multiple spaces. In case of any error while
+extracting floats from input string error message is shown and <cite>row_input()</cite> welcomes to try input again.
+Input is retried until it is successful.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Median&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#module-median_of_row">Median API:</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Median 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Dandelion.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
