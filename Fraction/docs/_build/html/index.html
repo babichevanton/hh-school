@@ -46,32 +46,38 @@
             
   <div class="section" id="welcome-to-fraction-s-documentation">
 <h1>Welcome to Fraction&#8217;s documentation!<a class="headerlink" href="#welcome-to-fraction-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Fraction is a simple training project for representing fraction in some notation. Fraction is represented by it&#8217;s decimal integer nominator and decimal integer denominator. Power of notation is also given as decimal integer value.</p>
-<p>Fraction API is represented by the class <a class="reference internal" href="#fraction.Fraction" title="fraction.Fraction"><code class="xref py py-class docutils literal"><span class="pre">fraction.Fraction</span></code></a>, which stores fraction and performs representation. It is computed by <cite>fraction.Fraction</cite> main method <a class="reference internal" href="#fraction.Fraction.represent" title="fraction.Fraction.represent"><code class="xref py py-meth docutils literal"><span class="pre">fraction.Fraction.represent()</span></code></a>, that prints representation to the console. Each character of fraction in given notation looks like <cite>#&lt;val&gt;</cite>, where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
+<p>Fraction is a simple training project for representing fraction in some notation. Fraction is represented by it&#8217;s
+decimal integer numerator and decimal integer denominator. Notation base is also given as decimal integer value.</p>
+<p>Fraction API is represented by the class <a class="reference internal" href="#fraction.Fraction" title="fraction.Fraction"><code class="xref py py-class docutils literal"><span class="pre">fraction.Fraction</span></code></a>, which stores fraction and performs
+representation. It is computed by <cite>fraction.Fraction</cite> main method <a class="reference internal" href="#fraction.Fraction.represent" title="fraction.Fraction.represent"><code class="xref py py-meth docutils literal"><span class="pre">fraction.Fraction.represent()</span></code></a>, that
+prints representation to the console. Each character of fraction in given notation looks like <cite>#&lt;val&gt;</cite>,
+where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
 </div>
 <div class="section" id="module-fraction">
 <span id="fraction-api"></span><h1>Fraction API:<a class="headerlink" href="#module-fraction" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="fraction.Fraction">
-<em class="property">class </em><code class="descclassname">fraction.</code><code class="descname">Fraction</code><span class="sig-paren">(</span><em>nominator</em>, <em>denominator</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">fraction.</code><code class="descname">Fraction</code><span class="sig-paren">(</span><em>numerator</em>, <em>denominator</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main class for performing actions on the fraction. 
-Stores fraction as nominator and denominator and computes representation in different notations</p>
+Stores fraction as numerator and denominator and computes representation in different notations</p>
 <dl class="method">
 <dt id="fraction.Fraction._comp_over">
-<code class="descname">_comp_over</code><span class="sig-paren">(</span><em>cur_rest</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction._comp_over" title="Permalink to this definition">¶</a></dt>
+<code class="descname">_comp_over</code><span class="sig-paren">(</span><em>cur_rem</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.Fraction._comp_over" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if process of computing representation of fractional part is over or not.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cur_rest</strong> (<em>int</em>) &#8211; Current rest in computation process.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cur_rem</strong> (<em>int</em>) &#8211; Current rest in computation process.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal"><span class="pre">True</span></code> if process is over and <code class="docutils literal"><span class="pre">False</span></code> otherwise.</td>
 </tr>
 </tbody>
 </table>
 <p>Method is used in <a class="reference internal" href="#fraction.Fraction._repr_frac" title="fraction.Fraction._repr_frac"><code class="xref py py-meth docutils literal"><span class="pre">_repr_frac()</span></code></a> to control computation process.</p>
-<p>Computing is over when current rest is 0 (in this case fractional part in given notation is finite) or is met earlier (in this case fractional part has period and it&#8217;s finished by rest computed during previous step).</p>
+<p>Computing is over when current remainder is 0 (in this case fractional part in given notation is finite) or is
+met earlier (in this case fractional part has period and it&#8217;s finished by remainder computed during previous
+step).</p>
 </dd></dl>
 
 <dl class="method">
@@ -82,14 +88,21 @@ Stores fraction as nominator and denominator and computes representation in diff
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Notation base that fraction should be represented in.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Pair of lists of digits representing fractional part of the fraction. The first one represents non-periodical fractional part. The last one represents period of fraction.</td>
 </tr>
 </tbody>
 </table>
-<p>Representing is performing by improved algorithm of consequent multiplications. The difference from the classical algorithm of converting finite decimal fraction to the other notation is that fraction can be infinite. As soon as fraction is represented by it&#8217;s nominator and denominator (nominator &lt; denominator), the classical algorithm can be improved. During every step of algorithm we need multiply nominator and power of notation and then divide it by denominator. Quotient is the computed digit of representation, rest is used in further computations. The whole history of rests should be stored. Process is finished when current rest is 0 (in this case fractional part in given notation is finite) or it is stored in history of rests (in this case fractional part is infinite with digits from rest found earlier to rest found in previous step as period).</p>
-<p>Checks of continuing process is made by <a class="reference internal" href="#fraction.Fraction._comp_over" title="fraction.Fraction._comp_over"><code class="xref py py-meth docutils literal"><span class="pre">_comp_over()</span></code></a>.</p>
+<p>Improved algorithm of consequent multiplications is used. The difference from the classical algorithm of
+converting finite decimal fraction to the other notation is that fraction can be infinite. As soon as fraction
+is represented by it&#8217;s numerator and denominator (numerator &lt; denominator), the classical algorithm can be
+improved. During every step of algorithm we need multiply numerator and notation base and then divide it by
+denominator. Quotient is the computed digit of representation, remainder is used in further computations.
+The whole history of remainders should be stored. Process is finished when current remainder is 0 (in this case
+fractional part in given notation is finite) or it is stored in history of remainders (in this case fractional
+part is infinite with digits from rest found earlier to rest found in previous step as period).</p>
+<p>Checks of continuing process is performed by <a class="reference internal" href="#fraction.Fraction._comp_over" title="fraction.Fraction._comp_over"><code class="xref py py-meth docutils literal"><span class="pre">_comp_over()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -100,13 +113,13 @@ Stores fraction as nominator and denominator and computes representation in diff
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Notation base that fraction should be represented in.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of digits representing integer part of the fraction.</td>
 </tr>
 </tbody>
 </table>
-<p>Representing is performing by algorithm of consequent divisions and taking rests.</p>
+<p>Algorithm of consequent divisions and taking remainders is used.</p>
 </dd></dl>
 
 <dl class="method">
@@ -117,39 +130,48 @@ Stores fraction as nominator and denominator and computes representation in diff
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Power of notation that fraction should be represented in.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>notation</strong> (<em>int</em>) &#8211; Notation base that fraction should be represented in.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing is returned.</td>
 </tr>
 </tbody>
 </table>
-<p>Method separately represent integer (<a class="reference internal" href="#fraction.Fraction._repr_int" title="fraction.Fraction._repr_int"><code class="xref py py-meth docutils literal"><span class="pre">_repr_int()</span></code></a>) and fractional (<a class="reference internal" href="#fraction.Fraction._repr_frac" title="fraction.Fraction._repr_frac"><code class="xref py py-meth docutils literal"><span class="pre">_repr_frac()</span></code></a>) part. After that method combines all representations into the result one and prints it. Each character of representation looks like <cite>#&lt;val&gt;</cite>, where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
+<p>Method separately represent integer (<a class="reference internal" href="#fraction.Fraction._repr_int" title="fraction.Fraction._repr_int"><code class="xref py py-meth docutils literal"><span class="pre">_repr_int()</span></code></a>) and fractional (<a class="reference internal" href="#fraction.Fraction._repr_frac" title="fraction.Fraction._repr_frac"><code class="xref py py-meth docutils literal"><span class="pre">_repr_frac()</span></code></a>) part.
+After that method combines all representations into the result one and prints it. Each character of
+representation looks like <cite>#&lt;val&gt;</cite>, where <cite>&lt;val&gt;</cite> is digit in given notation.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="fraction.input_int">
-<code class="descclassname">fraction.</code><code class="descname">input_int</code><span class="sig-paren">(</span><em>welcome</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.input_int" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">fraction.</code><code class="descname">input_int</code><span class="sig-paren">(</span><em>welcome</em>, <em>cond</em>, <em>cond_str</em><span class="sig-paren">)</span><a class="headerlink" href="#fraction.input_int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input integer value from console.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>welcome</strong> (<em>str</em>) &#8211; String that is shown in console to specify input value.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>welcome</strong> (<em>str</em>) &#8211; String that is shown in console to specify input value.</li>
+<li><strong>cond</strong> (<em>function</em>) &#8211; Checking function of 1 argument that returns <code class="docutils literal"><span class="pre">True</span></code> if extracted value is acceptable and <code class="docutils literal"><span class="pre">False</span></code> otherwise.</li>
+<li><strong>cond_str</strong> (<em>str</em>) &#8211; String that is shown in console in case of checking function failure.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Integer value extracted from input string.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Integer value extracted from input string.</p>
+</td>
 </tr>
 </tbody>
 </table>
-<p>In case of any error while extracting floats from input string error message is shown and <cite>input_int()</cite> welcomes to try input again.
-Input is retried until it is successful.</p>
+<p>In case of any error while extracting values from input string error message is shown and <cite>input_int()</cite> welcomes to
+try input again. Input is retried until it is successful.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="fraction.main">
 <code class="descclassname">fraction.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fraction.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>The main function that get nominator, denominator and power of notation from console and then print representation of the fraction.</p>
+<dd><p>The main function that get numerator, denominator and notation base from console and then print representation of
+the fraction.</p>
 </dd></dl>
 
 </div>

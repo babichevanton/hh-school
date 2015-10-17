@@ -6,9 +6,13 @@
 Welcome to Fraction's documentation!
 ====================================
 
-Fraction is a simple training project for representing fraction in some notation. Fraction is represented by it's decimal integer nominator and decimal integer denominator. Power of notation is also given as decimal integer value.
+Fraction is a simple training project for representing fraction in some notation. Fraction is represented by it's
+decimal integer numerator and decimal integer denominator. Notation base is also given as decimal integer value.
 
-Fraction API is represented by the class :py:class:`fraction.Fraction`, which stores fraction and performs representation. It is computed by `fraction.Fraction` main method :py:meth:`fraction.Fraction.represent()`, that prints representation to the console. Each character of fraction in given notation looks like `#<val>`, where `<val>` is digit in given notation.
+Fraction API is represented by the class :py:class:`fraction.Fraction`, which stores fraction and performs
+representation. It is computed by `fraction.Fraction` main method :py:meth:`fraction.Fraction.represent()`, that
+prints representation to the console. Each character of fraction in given notation looks like `#<val>`,
+where `<val>` is digit in given notation.
 
 
 Fraction API:
