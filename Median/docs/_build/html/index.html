@@ -47,7 +47,8 @@
   <div class="section" id="welcome-to-median-s-documentation">
 <h1>Welcome to Median&#8217;s documentation!<a class="headerlink" href="#welcome-to-median-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Median is a simple training module for finding median of row of numbers. Row is combined from two sorted subrows
-that should be taken from console.</p>
+that should be taken from console. Each subrow is considered to be sorted in some order row of float numbers.
+In case of error while processing input string system shows error message and offers user to retry input.</p>
 <p>Median&#8217;s API is represented by <a class="reference internal" href="#median_of_row.median" title="median_of_row.median"><code class="xref py py-func docutils literal"><span class="pre">median_of_row.median()</span></code></a> which takes two sorted rows of numbers and computes
 the median of row combined from both taken rows.</p>
 </div>
@@ -109,8 +110,8 @@ the median of row combined from both taken rows.</p>
 </tr>
 </tbody>
 </table>
-<p>Merge procedure is needed for merging two sorted in the same order lists of elements in one sorted list.
-Sorting order of result list is similar to both parameters&#8217; ones.</p>
+<p>Merge procedure is needed for merging two sorted in ascending order lists of elements in one sorted list.
+Sorting order of result list is ascending.</p>
 </dd></dl>
 
 <dl class="function">
