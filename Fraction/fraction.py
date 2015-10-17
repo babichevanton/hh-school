@@ -11,9 +11,9 @@ class Fraction:
             self.sign = '-'
         else:
             self.sign = ''
-        self.int = abs(numerator / denominator)
-        self.frac = abs(numerator % denominator)
-        self.denom = denominator
+        self.int = abs(numerator) / abs(denominator)
+        self.frac = abs(numerator) % abs(denominator)
+        self.denom = abs(denominator)
         self.rem_history = []
 
     def represent(self, notation):
