@@ -1,7 +1,5 @@
 __author__ = 'Dandelion'
 
-import re
-
 
 def merge(list1, list2):
     """
@@ -11,8 +9,8 @@ def merge(list1, list2):
     :param list list2: Second list to merge. It should be sorted in the same order as first one.
     :return: Sorted list of elements both from 1st and 2nd parameters.
 
-    Merge procedure is needed for merging two sorted in the same order lists of elements in one sorted list.
-    Sorting order of result list is similar to both parameters' ones.
+    Merge procedure is needed for merging two sorted in ascending order lists of elements in one sorted list.
+    Sorting order of result list is ascending.
     """
     res = [None] * (len(list1) + len(list2))
     i = j = k = 0
@@ -45,11 +43,11 @@ def median(row1, row2):
 
     For joining both rows of values :py:func:`merge()` is used
     """
-    if (row1[0] <= row1[-1] and row2[0] <= row2[-1] or row1[0] >= row1[-1] and row2[0] >= row2[-1]):
-        row = merge(row1, row2)
-    else:
-        # merge needs sorted in the SAME order lists
-        row = merge(row1, row2.reverse())
+    if row1[0] > row1[-1]:
+        row1.reverse()
+    if row2[0] > row2[-1]:
+        row2.reverse()
+    row = merge(row1, row2)
     print "Row is :", " ".join(map(str, row))
     if len(row) % 2:
         return row[len(row) / 2]
@@ -69,9 +67,9 @@ def row_input(num):
     Input is retried until it is successful.
     """
     while (1):
-        row_str = re.sub(r' +', ' ', raw_input("Input row " + str(num) +  ": ").strip())
+        row_str = raw_input("Input row " + str(num) +  ": ").strip()
         try:
-            return map(float, row_str.split(' '))
+            return map(float, row_str.split())
         except ValueError as err:
             print "Invalid input data:", err.message
 
